@@ -35,11 +35,20 @@ async function networkFirst(request) {
     return await fetch(request);
   } catch (error) {
     const cache = await caches.open(cacheName);
-    return cache.match("offline.html");
+    return cache.match(request);
+  }
+}
+
+async function cacheFirst(request) {
+  try {
+    const cache = await caches.open(cacheName);
+    return cache.match(request);
+  } catch (error) {
+    return await fetch(request);
   }
 }
 
 self.addEventListener("fetch", (event) => {
-  console.log(`[Service Worker] Fetch event: ${event.request.url}`);
-  event.respondWith(networkFirst(event.request));
+  //console.log(`[Service Worker] Fetch event: ${event.request.url}`);
+  event.respondWith(cacheFirst(event.request));
 });
