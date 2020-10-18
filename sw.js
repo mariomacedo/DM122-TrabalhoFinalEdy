@@ -1,5 +1,17 @@
-const cacheName = "app-shell-v1";
+const cacheName = "app-shell-v2";
 const assetsToCache = ["offline.html"];
+
+function removeOldCache(key) {
+  if (key !== cacheName) {
+    console.log(`[Service Worker] Removing old cache: ${key}`);
+    return caches.delete(key);
+  }
+}
+
+async function cacheCleanUp() {
+  const keyList = await caches.keys();
+  return Promise.all(keyList.map(removeOldCache));
+}
 
 async function cacheStaticAssets() {
   const cache = await caches.open(cacheName);
@@ -8,6 +20,7 @@ async function cacheStaticAssets() {
 
 self.addEventListener("install", (event) => {
   console.log("[Service Worker] Installing service worker...", event);
+  event.waitUntil(cacheCleanUp());
   event.waitUntil(cacheStaticAssets());
   self.skipWaiting();
 });
