@@ -11,7 +11,6 @@ const assetsToCache = [
   "assets/js/app.js",
   "favicon.ico",
   "index.html",
-  "manifest.json",
   "/",
 ];
 
@@ -56,7 +55,8 @@ async function networkFirst(request) {
 async function cacheFirst(request) {
   try {
     const cache = await caches.open(cacheName);
-    return cache.match(request);
+    const response = await cache.match(request)
+    return response || cache.match(request);
   } catch (error) {
     return await fetch(request);
   }
