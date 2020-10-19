@@ -1,10 +1,15 @@
-import HtmlService from "./HtmlService.js";
 import DoBService from "./DoBService.js";
+import HtmlService from "./HtmlService.js";
 
 class App {
   constructor() {
     this.registerServiceWorker();
-    this.bindFormListener();
+    this.start();
+  }
+
+  start() {
+    const dobService = new DoBService();
+    new HtmlService(dobService);
   }
 
   registerServiceWorker() {
@@ -16,23 +21,6 @@ class App {
         .register("sw.js")
         .then(onsuccess)
         .catch(onfailure);
-    }
-  }
-
-  bindFormListener() {
-    const form = document.querySelector("form");
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      this.saveToStorage(form);
-    });
-  }
-
-  saveToStorage(form) {
-    const fullName = form.fullName.value;
-    const dob = form.dob.value;
-    if (fullName && dob) {
-      console.log("valid");
-      form.reset();
     }
   }
 }
