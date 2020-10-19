@@ -42,13 +42,87 @@
           class="mdl-layout__content mat-typography"
           style="text-align: center"
         >
-          <p id="output">
-            <img src="assets/images/pwa-logo.png" alt="PWA Logo" />
-          </p>
+          <form action="">
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--12-col">
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                >
+                  <input
+                    class="mdl-textfield__input"
+                    type="text"
+                    name="fullName"
+                  />
+                  <label class="mdl-textfield__label" for="name"
+                    >Full Name</label
+                  >
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--12-col">
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                >
+                  <input
+                    class="mdl-textfield__input"
+                    type="text"
+                    name="dob"
+                    pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$"
+                  />
+                  <label class="mdl-textfield__label" for="dob"
+                    >Date of Birthday (dd/mm/yyyy)</label
+                  >
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--12-col">
+                <button
+                  class="mdl-button mdl-js-button mdl-button--raised"
+                  type="submit"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="mdl-grid">
+            <div
+              class="mdl-cell mdl-cell--12-col-phone mdl-cell--4-offset-desktop mdl-cell--4-col-desktop mdl-cell--middle"
+            >
+              <table
+                class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp"
+              >
+                <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th>DOB</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">
+                      Mário Guilherme Macedo
+                    </td>
+                    <td>11/03/1991</td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">
+                      Plywood (Birch)
+                    </td>
+                    <td>50</td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">
+                      Laminate (Gold on Blue)
+                    </td>
+                    <td>10</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </main>
       </div>
     </div>
     <script defer src="assets/js/material.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
   </body>
 </html>
