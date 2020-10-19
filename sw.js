@@ -1,4 +1,4 @@
-const cacheName = "app-shell-v3";
+const cacheName = "app-shell-v1.0";
 const assetsToCache = [
   "https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css",
   "https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
