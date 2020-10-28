@@ -1,5 +1,3 @@
-const DONE = "done";
-
 export default class HtmlService {
   constructor(dobService) {
     this.dobService = dobService;
@@ -17,6 +15,8 @@ export default class HtmlService {
   }
 
   async addBirthDay(fullName, dob) {
+    if (!fullName || !dob || fullName === "" || dob === "") return;
+
     const data = { fullName: fullName, dob: dob };
     const taskId = await this.dobService.save(data);
     data.id = taskId;
@@ -26,12 +26,6 @@ export default class HtmlService {
   async listBirthDays() {
     const tasks = await this.dobService.getAll();
     tasks.forEach((task) => this.addToHtmlList(task));
-  }
-
-  async saveBirthDay(taskId, isDone) {
-    const task = await this.dobService.get(taskId);
-    task.done = isDone;
-    this.dobService.save(task);
   }
 
   async deleteBirthDay(tr) {
@@ -58,7 +52,6 @@ export default class HtmlService {
 
     const tdDelete = document.createElement("td");
     const button = document.createElement("button");
-    //mdl-button mdl-js-button mdl-button--accent
     button.classList.add("mdl-button");
     button.classList.add("mdl-js-button");
     button.classList.add("mdl-button--accent");
